@@ -6,8 +6,50 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello alchemy!</h1>
+    <h1>鲜享链智能合约前端交互测试</h1>
     <script src="./dist/main.js" ></script>
+
+    <div>
+        <p>要查询的鲜享链用户ID</p> <input type="number" placeholder="请输入数字" name="myInput"> <button id="userId_click" onclick="lookupID()"> 点击查询</button>
+        <p id='userid_info'>...</p>
+    </div>
+
+    <div>
+
+        <p>要查询的鲜享链用户类型总数</p><input type="radio" name="usertype" value=0> 消费者
+        <input type="radio" name="usertype" value=1> 商家
+        <input type="radio" name="usertype" value=2> 运营商
+        <button id="userType_click" > 点击查询</button>
+        <p id='usertype_info' style="color: blueviolet;">...</p>
+    </div>
+
+    <div>
+        <p>输入要添加的用户名称：</p><input type="text" name="newuser_name">
+        <p>输入要添加的用户类型：</p><input type="radio" name="newuser_type">
+        <p id='newuser_info' style="color: blueviolet;">...</p>
+        <button id="newuser_submit"></button>
+    </div>
+
+
+
+    <script>
+       // import { UserRegistration_contract } from './dist/main.js'
+            function lookupID() {
+                var inputElement = document.getElementsByName("myInput")[0];
+                var inputValue = inputElement.value.trim();
+                console.log('要查询的ID是',inputValue)
+                
+                // 判断是否为空字符串
+                if (inputValue === "") {
+                    alert("输入框为空！");
+                } 
     
+                console.log('开始查询,contract=',UserRegistration_contract)
+                const name = getNameById(inputElement.value)
+                document.getElementById('userid_info').innerText = name
+            }
+
+
+    </script>
 </body>
 </html>
